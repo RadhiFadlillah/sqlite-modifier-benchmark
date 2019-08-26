@@ -9,7 +9,15 @@ WHERE DATE(input_time, "localtime") >= "2019-01-01"
 AND DATE(input_time, "localtime") <= "2019-08-10";
 ```
 
-With that said, I decided to replace `localtime` modifier into `NNN hours` modifier. The change is significant, with `NNN hours` is around 5x faster than `localtime` :
+With that said, I decided to replace `localtime` modifier into `NNN hours` modifier :
+
+```sql
+SELECT COUNT(*) FROM purchase
+WHERE DATE(input_time, "+7 hours") >= "2019-01-01"
+AND DATE(input_time, "+7 hours") <= "2019-08-10";
+```
+
+The change is significant, with `NNN hours` is around 5x faster than `localtime` :
 
 ```
 N Days    : 10
